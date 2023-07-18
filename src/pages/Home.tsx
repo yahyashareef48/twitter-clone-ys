@@ -1,4 +1,3 @@
-import { useState } from "react";
 import SearchBar from "../components/SearchBar";
 import HomeHeader from "../components/HomeHeader";
 

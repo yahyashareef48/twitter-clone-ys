@@ -4,17 +4,15 @@ import Navbar from "./components/Navbar";
 
 function App() {
   return (
-        <div className="flex mx-auto">
-          <header>
-            <Navbar />
-          </header>
-          <div className="flex-grow">
-            <Routes>
-              <Route path="/" element={<Navigate to="/home" replace />} />
-              <Route path="/home" element={<Home />} />
-            </Routes>
-          </div>
-        </div>
+    <div className="flex max-w-[1234px] mx-auto">
+      <Navbar />
+      <div className="flex-grow">
+        <Routes>
+          <Route path="/" element={<Navigate to="/home" replace />} />
+          <Route path="/home" element={<Home />} />
+        </Routes>
+      </div>
+    </div>
   );
 }
 
