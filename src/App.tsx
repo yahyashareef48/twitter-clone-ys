@@ -4,7 +4,7 @@ import Navbar from "./components/Navbar";
 
 function App() {
   return (
-    <div className="flex max-w-[1234px] mx-auto">
+    <div className="flex max-w-[1234px] xl:max-w-[1044px] lg:max-w-[660px] mx-auto">
       <Navbar />
       <div className="flex-grow">
         <Routes>
