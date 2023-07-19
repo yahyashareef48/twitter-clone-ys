@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import { AuthButton } from "../pages/Auth";
 
 export default function Navbar() {
   const [activeBtnIndex, setActiveBtnIndex] = useState(0);
@@ -40,11 +41,13 @@ export default function Navbar() {
             p-3 pr-6 w-max hover:bg-[#e7e9ea1a] transition rounded-full
           `}
           onClick={() => setActiveBtnIndex(2)}
-          to="user name"
+          to="profile"
         >
           <i className="fa-regular font-bold fa-user pl-1 pr-4"></i>{" "}
           <span className="xl:hidden">Profile</span>
         </Link>
+
+        <AuthButton />
       </nav>
     </header>
   );
