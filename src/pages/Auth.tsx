@@ -2,7 +2,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { auth, googleProvider } from "../firebase";
 import { signInWithPopup, signOut } from "firebase/auth";
 import { Link, useNavigate } from "react-router-dom";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 export default function Auth() {
   const [user] = useAuthState(auth);
@@ -34,18 +34,34 @@ export default function Auth() {
 }
 
 export function AuthButton() {
+  const [hide, setHide] = useState(false);
   const [user] = useAuthState(auth);
 
   return (
     <>
       {user ? (
-        <div
-          className={`
-            p-3 pr-6 w-max text-base font-bold hover:bg-[#e7e9ea1a] transition rounded-full flex
-          `}
-        >
-          <img src={user.photoURL || undefined} className="mr-2 w-9 rounded-full" />
-          <button onClick={() => signOut(auth)}>{user.displayName}</button>
+        <div className="relative">
+          {hide && (
+            <div
+              onClick={() => {
+                signOut(auth);
+              }}
+              className="absolute p-4 min-w-[95px] cursor-pointer text-base font-bold bg-black bottom-12 left-8 border-[1px] border-[#2f3336] rounded-2xl"
+            >
+              <span>Log out</span>
+            </div>
+          )}
+          <div
+            onClick={() => {
+              setHide((old) => !old);
+            }}
+            className={`
+              p-3 pr-6 w-max text-base font-bold hover:bg-[#e7e9ea1a] transition rounded-full flex
+            `}
+          >
+            <img src={user.photoURL || undefined} className="mr-2 w-9 rounded-full" />
+            <span className="flex items-center xl:hidden">{user.displayName}</span>
+          </div>
         </div>
       ) : (
         <Link
