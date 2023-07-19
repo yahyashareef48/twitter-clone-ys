@@ -1,10 +1,8 @@
 import { Link, useLocation } from "react-router-dom";
-import { useState } from "react";
 import { AuthButton } from "../pages/Auth";
 
 export default function Navbar() {
   const location = useLocation();
-  console.log(location);
 
   return (
     <header className="max-w-[250px] xl:max-w-[60px] w-full">
