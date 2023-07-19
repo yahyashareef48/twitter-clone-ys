@@ -1,9 +1,11 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useState } from "react";
 import { AuthButton } from "../pages/Auth";
 
 export default function Navbar() {
-  const [activeBtnIndex, setActiveBtnIndex] = useState(0);
+  const location = useLocation();
+  console.log(location);
+  
 
   return (
     <header className="max-w-[250px] xl:max-w-[60px] w-full">
@@ -14,10 +16,9 @@ export default function Navbar() {
 
         <Link
           className={`
-            ${activeBtnIndex === 0 && "font-bold"}
+            ${location.pathname === "/home" && "font-bold"}
             p-3 pr-6 w-max hover:bg-[#e7e9ea1a] transition rounded-full
           `}
-          onClick={() => setActiveBtnIndex(0)}
           to="home"
         >
           <i className="fa-solid fa-house pl-1 pr-4"></i> <span className="xl:hidden">Home</span>
@@ -25,10 +26,9 @@ export default function Navbar() {
 
         <Link
           className={`
-          ${activeBtnIndex === 1 && "font-bold"}
+          ${location.pathname === "/explore" && "font-bold"}
           p-3 pr-6 w-max hover:bg-[#e7e9ea1a] transition rounded-full
         `}
-          onClick={() => setActiveBtnIndex(1)}
           to="explore"
         >
           <i className="fa-solid fa-magnifying-glass pl-1 pr-4"></i>{" "}
@@ -37,10 +37,9 @@ export default function Navbar() {
 
         <Link
           className={`
-            ${activeBtnIndex === 2 && "font-bold"}
+            ${location.pathname === "/profile" && "font-bold"}
             p-3 pr-6 w-max hover:bg-[#e7e9ea1a] transition rounded-full
           `}
-          onClick={() => setActiveBtnIndex(2)}
           to="profile"
         >
           <i className="fa-regular font-bold fa-user pl-1 pr-4"></i>{" "}
