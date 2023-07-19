@@ -1,6 +1,7 @@
 import { Route, Routes, Navigate } from "react-router-dom";
 import Home from "./pages/Home";
 import Navbar from "./components/Navbar";
+import Auth from "./components/Auth";
 
 function App() {
   return (
@@ -10,6 +11,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Navigate to="/home" replace />} />
           <Route path="/home" element={<Home />} />
+          <Route path="/login" element={<Auth />} />
         </Routes>
       </div>
     </div>
