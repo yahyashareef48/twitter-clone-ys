@@ -14,7 +14,7 @@ export default function Navbar() {
         <Link
           className={`
             ${location.pathname === "/home" && "font-bold"}
-            p-3 pr-6 w-max hover:bg-[#e7e9ea1a] transition rounded-full
+            p-3 pr-6 xl:pr-0 w-max hover:bg-[#e7e9ea1a] transition rounded-full
           `}
           to="home"
         >
@@ -24,7 +24,7 @@ export default function Navbar() {
         <Link
           className={`
           ${location.pathname === "/explore" && "font-bold"}
-          p-3 pr-6 w-max hover:bg-[#e7e9ea1a] transition rounded-full
+          p-3 pr-6 xl:pr-0 w-max hover:bg-[#e7e9ea1a] transition rounded-full
         `}
           to="explore"
         >
@@ -35,7 +35,7 @@ export default function Navbar() {
         <Link
           className={`
             ${location.pathname === "/profile" && "font-bold"}
-            p-3 pr-6 w-max hover:bg-[#e7e9ea1a] transition rounded-full
+            p-3 pr-6 xl:pr-0 w-max hover:bg-[#e7e9ea1a] transition rounded-full
           `}
           to="profile"
         >

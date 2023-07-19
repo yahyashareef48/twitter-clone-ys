@@ -56,10 +56,10 @@ export function AuthButton() {
               setHide((old) => !old);
             }}
             className={`
-              p-3 pr-6 w-max text-base font-bold hover:bg-[#e7e9ea1a] transition rounded-full flex
+              p-3 xl:p-2 w-max text-base font-bold hover:bg-[#e7e9ea1a] transition rounded-full flex
             `}
           >
-            <img src={user.photoURL || undefined} className="mr-2 w-9 rounded-full" />
+            <img src={user.photoURL || undefined} className="mr-2 xl:mr-0 w-9 rounded-full" />
             <span className="flex items-center xl:hidden">{user.displayName}</span>
           </div>
         </div>
