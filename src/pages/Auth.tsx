@@ -9,7 +9,7 @@ export default function Auth() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    user && navigate("/home")
+    user && navigate("/home");
   }, [user]);
 
   const signInWithGoogle = async () => {
