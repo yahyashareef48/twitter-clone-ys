@@ -1,18 +1,33 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getAuth, GoogleAuthProvider } from "firebase/auth";
+import { getFirestore, addDoc, collection, Timestamp } from "firebase/firestore";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyBXlqLg9S42MJ9aoKTPEdKTqxRAFfxrq1s",
-  authDomain: "twitter-clone-ys.firebaseapp.com",
-  projectId: "twitter-clone-ys",
-  storageBucket: "twitter-clone-ys.appspot.com",
-  messagingSenderId: "344615219381",
-  appId: "1:344615219381:web:20398459e3aeeb033ccefc",
+  apiKey: import.meta.env.VITE_API_KEY,
+  authDomain: import.meta.env.VITE_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_APP_ID,
 };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
+
+const db = getFirestore(app);
+const colRef = collection(db, "tweets");
+
 export const auth = getAuth(app);
 export const googleProvider = new GoogleAuthProvider();
+
+export async function addTweet(photoURL: string, tweet: string, uid: string, userName: string) {
+  await addDoc(colRef, {
+    createdAt: Timestamp.fromDate(new Date()),
+    photoURL,
+    tweet,
+    uid,
+    userName,
+  });
+}
