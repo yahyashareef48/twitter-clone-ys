@@ -1,9 +1,11 @@
 import { useState } from "react";
 import { FocusScope } from "react-aria";
 import TweetForm from "./TweetForm";
+import { useNavigate } from "react-router-dom";
 
-export default function TweetFormOverlay() {
+export default function TweetFormOverlay({ user }: any) {
   const [overlay, setOverlay] = useState(false);
+  const navigate = useNavigate();
 
   return (
     <>
@@ -22,7 +24,10 @@ export default function TweetFormOverlay() {
       )}
 
       {/* Button to toggle the overlay */}
-      <button onClick={() => setOverlay(true)} className="p-3 m-4 xl:m-2 bg-blue-400 rounded-full">
+      <button
+        onClick={() => (user ? setOverlay(true) : navigate("/login"))}
+        className="p-3 m-4 xl:m-2 bg-blue-400 rounded-full"
+      >
         <i className="fa-solid fa-feather-pointed hidden xl:block"></i>
         <span className="xl:hidden font-bold">Tweet</span>
       </button>

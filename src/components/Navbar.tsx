@@ -45,7 +45,7 @@ export default function Navbar() {
             <span className="xl:hidden">Profile</span>
           </Link>
 
-          {user && <TweetFormOverlay />}
+          <TweetFormOverlay user={user} />
         </div>
 
         <div className="mb-10">
