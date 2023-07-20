@@ -1,8 +1,12 @@
 import { Link, useLocation } from "react-router-dom";
 import { AuthButton } from "../pages/Auth";
+import TweetFormOverlay from "./TweetFormOverlay";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth } from "../firebase";
 
 export default function Navbar() {
   const location = useLocation();
+  const [user] = useAuthState(auth);
 
   return (
     <header className="max-w-[250px] xl:max-w-[60px] w-full">
@@ -40,6 +44,8 @@ export default function Navbar() {
             <i className="fa-regular font-bold fa-user pl-1 pr-4"></i>{" "}
             <span className="xl:hidden">Profile</span>
           </Link>
+
+          {user && <TweetFormOverlay />}
         </div>
 
         <div className="mb-10">

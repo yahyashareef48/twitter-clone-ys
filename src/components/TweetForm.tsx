@@ -22,7 +22,7 @@ export default function TweetForm() {
   return (
     <>
       {user && (
-        <div className="flex p-4 border-[1px] border-t-0 border-[#2f3336]">
+        <div className="flex max-w-[600px] p-4 border-[1px] border-t-0 border-[#2f3336]">
           <img
             className="w-10 max-h-[40px] rounded-full mr-4"
             src={user?.photoURL ?? undefined}
