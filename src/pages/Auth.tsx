@@ -3,6 +3,7 @@ import { auth, googleProvider } from "../firebase";
 import { signInWithPopup, signOut } from "firebase/auth";
 import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
+import googleIcon from "../../public/7123025_logo_google_g_icon.svg";
 
 export default function Auth() {
   const [user] = useAuthState(auth);
@@ -26,7 +27,7 @@ export default function Auth() {
         className="bg-white text-black py-1 flex justify-center items-center rounded-full w-[280px]"
         onClick={() => (user ? signOut(auth) : signInWithGoogle())}
       >
-        <img className="w-8" src="../../public/7123025_logo_google_g_icon.svg" />
+        <img className="w-8 mr-1" src={googleIcon} />
         Sign in with google
       </button>
     </div>
@@ -66,7 +67,7 @@ export function AuthButton() {
       ) : (
         <Link
           className={`
-            p-3 pr-6 w-max hover:bg-[#e7e9ea1a] transition rounded-full
+            p-3 pr-6 xl:pr-0 w-max hover:bg-[#e7e9ea1a] transition rounded-full
           `}
           to="login"
         >
