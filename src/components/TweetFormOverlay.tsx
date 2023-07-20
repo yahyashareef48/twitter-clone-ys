@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { FocusScope } from "react-aria";
 import TweetForm from "./TweetForm";
 import { useNavigate } from "react-router-dom";
+import Overlay from "./Overlay";
 
 export default function TweetFormOverlay({ user }: any) {
   const [overlay, setOverlay] = useState(false);
@@ -10,18 +10,14 @@ export default function TweetFormOverlay({ user }: any) {
   return (
     <>
       {/* Overlay */}
-      {overlay && (
-        <FocusScope contain autoFocus>
-          <div className="flex justify-center items-center fixed w-full h-full top-0 left-0 right-0 bottom-0 z-50 bg-blue-200 bg-opacity-20">
-            <div className="max-w-[600px] bg-black w-full rounded-3xl">
-              <button className="m-4" onClick={() => setOverlay(false)}>
-                <i className="fa-solid fa-x"></i>
-              </button>
-              <TweetForm />
-            </div>
-          </div>
-        </FocusScope>
-      )}
+      <Overlay show={overlay}>
+        <div className="max-w-[600px] bg-black w-full h-max mt-12 rounded-3xl">
+          <button className="m-4" onClick={() => setOverlay(false)}>
+            <i className="fa-solid fa-x"></i>
+          </button>
+          <TweetForm handleFunc={() => setOverlay(false)} />
+        </div>
+      </Overlay>
 
       {/* Button to toggle the overlay */}
       <button

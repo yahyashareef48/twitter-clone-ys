@@ -3,7 +3,11 @@ import { auth, addTweet } from "../firebase";
 import { useState } from "react";
 import DOMPurify from "dompurify";
 
-export default function TweetForm() {
+interface TweetFormProps {
+  handleFunc?: () => void;
+}
+
+export default function TweetForm({ handleFunc }: TweetFormProps) {
   const [tweet, setTweet] = useState("");
   const [user] = useAuthState(auth);
 
@@ -11,6 +15,8 @@ export default function TweetForm() {
     if (user && user.photoURL && user.uid && user.displayName) {
       if (tweet.trim().length > 0) {
         addTweet(user.photoURL, tweet, user.uid, user.displayName);
+        setTweet("");
+        handleFunc && handleFunc();
       } else {
         alert("Write something");
       }
