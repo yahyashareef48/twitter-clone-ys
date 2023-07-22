@@ -14,8 +14,8 @@ export default function Tweets() {
     return <p>Error: {error.message}</p>;
   }
 
-  // Handle the case when tweets is null or undefined
-  if (!tweets) {
+  // If tweets is empty, render "No tweets found" message
+  if (!tweets || tweets.empty) {
     return <p>No tweets found.</p>;
   }
 
