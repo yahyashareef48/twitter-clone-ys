@@ -28,5 +28,6 @@ export async function addTweet(photoURL: string, tweet: string, uid: string, use
     tweet,
     uid,
     userName,
+    // likes: 0,
   });
 }

@@ -1,7 +1,7 @@
 import SearchBar from "../components/SearchBar";
 import HomeHeader from "../components/HomeHeader";
 import TweetForm from "../components/TweetForm";
-import Tweets from "../components/Tweets";
+import Feed from "../components/Feed";
 
 export default function Home() {
   return (
@@ -9,7 +9,7 @@ export default function Home() {
       <div className="max-w-[600px] w-full">
         <HomeHeader />
         <TweetForm />
-        <Tweets />
+        <Feed />
       </div>
 
       <div className="max-w-sm w-full lg:hidden">
