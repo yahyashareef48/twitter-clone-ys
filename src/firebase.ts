@@ -14,10 +14,9 @@ const firebaseConfig = {
 };
 
 // Initialize Firebase
-const app = initializeApp(firebaseConfig);
+export const app = initializeApp(firebaseConfig);
 
-const db = getFirestore(app);
-const colRef = collection(db, "tweets");
+export const colRef = collection(getFirestore(app), "tweets");
 
 export const auth = getAuth(app);
 export const googleProvider = new GoogleAuthProvider();
