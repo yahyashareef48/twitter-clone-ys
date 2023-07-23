@@ -2,7 +2,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { auth, deleteTweet } from "../firebase";
 import { useState } from "react";
 
-export default function TweetMenu({ authorId, docId }: { authorId: string, docId: string }) {
+export default function TweetMenu({ authorId, docId }: { authorId: string; docId: string }) {
   const [hide, setHide] = useState(false);
   const [user] = useAuthState(auth);
 
@@ -14,8 +14,8 @@ export default function TweetMenu({ authorId, docId }: { authorId: string, docId
             const userChoice = confirm("Do you want to delete the tweet?");
 
             if (userChoice) {
-              deleteTweet(docId)
-              setHide(false)
+              deleteTweet(docId);
+              setHide(false);
             } else {
               setHide(false);
             }
