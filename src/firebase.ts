@@ -11,6 +11,7 @@ import {
   getDoc,
   arrayUnion,
   arrayRemove,
+  deleteDoc,
 } from "firebase/firestore";
 
 // Your web app's Firebase configuration
@@ -58,4 +59,10 @@ export async function handleLike(tweetId: string, userId: string) {
   } catch (error) {
     console.error("Error updating document:", error);
   }
+}
+
+export async function deleteTweet(tweetId: string) {
+  const docRef = doc(db, "tweets", tweetId);
+
+  deleteDoc(docRef);
 }

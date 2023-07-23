@@ -1,6 +1,7 @@
 import { colRef } from "../firebase";
 import { useCollection } from "react-firebase-hooks/firestore";
 import LikeButton from "./LikeButton";
+import TweetMenu from "./TweetMenu";
 
 export default function Feed() {
   const [tweets, loading, error] = useCollection(colRef);
@@ -38,9 +39,13 @@ export default function Feed() {
           <img className="w-10 max-h-[40px] rounded-full mr-4" src={data.photoURL} alt="" />
         </div>
 
-        <div>
+        <div className="w-full">
           <div className="flex-1">
-            <p className="font-bold text-base">{data.userName}</p>
+            <div className="flex justify-between">
+              <p className="font-bold text-base">{data.userName}</p>
+              <TweetMenu authorId={data.uid} docId={doc.id} />
+            </div>
+
             <div
               className="text-[#e0e0e2] text-base break-words"
               dangerouslySetInnerHTML={{
