@@ -1,5 +1,6 @@
-import { colRef } from "../firebase";
+import { colRef, handleLike } from "../firebase";
 import { useCollection } from "react-firebase-hooks/firestore";
+import LikeButton from "./LikeButton";
 
 export default function Feed() {
   const [tweets, loading, error] = useCollection(colRef);
@@ -22,7 +23,7 @@ export default function Feed() {
   // If tweets has data, you can proceed with rendering the sorted tweetList
   const sortedTweets = [...tweets.docs].sort((a, b) => b.data().createdAt - a.data().createdAt);
 
-  const tweetList = sortedTweets.map((doc) => {
+  const tweetList = sortedTweets.map((doc, index) => {
     // Assuming each document contains a "tweet" field with the tweet content
     const data = doc.data();
     const tweet = data.tweet
@@ -31,7 +32,7 @@ export default function Feed() {
       .replace(/\n/g, "<br/>");
 
     return (
-      <div className="flex max-w-[600px] p-4 border-[1px] border-t-0 border-[#2f3336]">
+      <div key={index} className="flex max-w-[600px] p-4 border-[1px] border-t-0 border-[#2f3336]">
         <div>
           <img className="w-10 max-h-[40px] rounded-full mr-4" src={data.photoURL} alt="" />
         </div>
@@ -40,22 +41,18 @@ export default function Feed() {
           <p className="font-bold text-base mb-1">{data.userName}</p>
           <pre
             className="text-[#e0e0e2] text-base"
-            key={doc.id}
             dangerouslySetInnerHTML={{
               __html: tweet,
             }}
           />
 
-          {/* <div className="mt-4">
-            <button>
-              <i className="fa-regular fa-heart text-[#71767b]"></i>
-              <i className="fa-solid fa-heart text-[#f91880]"></i>
-            </button>
-          </div> */}
+          <div className="mt-2">
+            <LikeButton docId={doc.id} data={data} />
+          </div>
         </div>
       </div>
     );
   });
 
-  return <>{tweetList}</>;
+  return <div className="mb-5">{tweetList}</div>;
 }

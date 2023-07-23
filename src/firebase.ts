@@ -1,7 +1,17 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getAuth, GoogleAuthProvider } from "firebase/auth";
-import { getFirestore, addDoc, collection, Timestamp } from "firebase/firestore";
+import {
+  getFirestore,
+  addDoc,
+  collection,
+  Timestamp,
+  updateDoc,
+  doc,
+  getDoc,
+  arrayUnion,
+  arrayRemove,
+} from "firebase/firestore";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
@@ -16,7 +26,8 @@ const firebaseConfig = {
 // Initialize Firebase
 export const app = initializeApp(firebaseConfig);
 
-export const colRef = collection(getFirestore(app), "tweets");
+export const db = getFirestore(app);
+export const colRef = collection(db, "tweets");
 
 export const auth = getAuth(app);
 export const googleProvider = new GoogleAuthProvider();
@@ -28,6 +39,23 @@ export async function addTweet(photoURL: string, tweet: string, uid: string, use
     tweet,
     uid,
     userName,
-    // likes: 0,
+    likes: [],
   });
+}
+
+export async function handleLike(tweetId: string, userId: string) {
+  const docRef = doc(db, "tweets", tweetId);
+
+  const data = (await getDoc(docRef)).data();
+
+  try {
+    const updatedData =
+      data && data.likes.includes(userId)
+        ? { ...data, likes: arrayRemove(userId) }
+        : { ...data, likes: arrayUnion(userId) };
+
+    updateDoc(docRef, updatedData);
+  } catch (error) {
+    console.error("Error updating document:", error);
+  }
 }

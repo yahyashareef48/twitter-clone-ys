@@ -8,8 +8,10 @@ export default function Home() {
     <div className="flex">
       <div className="max-w-[600px] w-full">
         <HomeHeader />
-        <TweetForm />
-        <Feed />
+        <div className="flex flex-col max-h-[calc(100vh-100px)] overflow-y-auto">
+          <TweetForm />
+          <Feed />
+        </div>
       </div>
 
       <div className="max-w-sm w-full lg:hidden">
