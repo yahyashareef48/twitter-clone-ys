@@ -33,14 +33,14 @@ export default function Feed() {
 
     return (
       <div key={index} className="flex max-w-[600px] p-4 border-[1px] border-t-0 border-[#2f3336]">
-        <div>
+        <div className="min-w-[56px]">
           <img className="w-10 max-h-[40px] rounded-full mr-4" src={data.photoURL} alt="" />
         </div>
 
         <div>
           <p className="font-bold text-base mb-1">{data.userName}</p>
           <pre
-            className="text-[#e0e0e2] text-base"
+            className="text-[#e0e0e2] text-base break-words overflow-auto whitespace-pre-wrap"
             dangerouslySetInnerHTML={{
               __html: tweet,
             }}
