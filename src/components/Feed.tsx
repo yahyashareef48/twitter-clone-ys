@@ -1,4 +1,4 @@
-import { colRef, handleLike } from "../firebase";
+import { colRef } from "../firebase";
 import { useCollection } from "react-firebase-hooks/firestore";
 import LikeButton from "./LikeButton";
 
