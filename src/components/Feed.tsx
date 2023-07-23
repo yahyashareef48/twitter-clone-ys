@@ -29,7 +29,8 @@ export default function Feed() {
     const tweet = data.tweet
       .replace(/\n{3,}/g, "<br/><br/>")
       .replace(/\n{2}/g, "<br/><br/>")
-      .replace(/\n/g, "<br/>");
+      .replace(/\n/g, "<br/>")
+      .replace(/(.{20})/g, "$1&#8203;");
 
     return (
       <div key={index} className="flex max-w-[600px] p-4 border-[1px] border-t-0 border-[#2f3336]">
@@ -38,13 +39,15 @@ export default function Feed() {
         </div>
 
         <div>
-          <p className="font-bold text-base mb-1">{data.userName}</p>
-          <pre
-            className="text-[#e0e0e2] text-base break-words overflow-auto whitespace-pre-wrap"
-            dangerouslySetInnerHTML={{
-              __html: tweet,
-            }}
-          />
+          <div className="flex-1">
+            <p className="font-bold text-base">{data.userName}</p>
+            <div
+              className="text-[#e0e0e2] text-base break-words"
+              dangerouslySetInnerHTML={{
+                __html: tweet,
+              }}
+            />
+          </div>
 
           <div className="mt-2">
             <LikeButton docId={doc.id} data={data} />
