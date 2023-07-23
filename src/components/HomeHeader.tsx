@@ -4,7 +4,7 @@ export default function HomeHeader() {
   const [activeBtnIndex, setActiveBtnIndex] = useState(0);
 
   return (
-    <div className="border-[1px] border-[#2f3336]">
+    <div className="border-[1px] z-10 fixed max-w-[inherit] w-full border-[#2f3336] bg-black bg-opacity-80 bg-clip-padding backdrop-blur-lg">
       <div className="flex justify-between items-center p-4">
         <h1 className="font-bold text-xl ">Home</h1>
       </div>

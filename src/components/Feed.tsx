@@ -62,5 +62,5 @@ export default function Feed() {
     );
   });
 
-  return <div className="mb-5">{tweetList}</div>;
+  return <div>{tweetList}</div>;
 }

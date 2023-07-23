@@ -10,3 +10,7 @@ body {
   background-color: black;
   color: white;
 }
+
+#feed::-webkit-scrollbar {
+  width: 0;
+}
