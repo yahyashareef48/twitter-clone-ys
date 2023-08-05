@@ -7,10 +7,12 @@ export default function Home() {
   return (
     <div className="flex">
       <div className="max-w-[600px] w-full">
-        <HomeHeader />
-        <div id="feed" className="flex flex-col max-h-[100vh] pt-[117px] overflow-y-auto">
-          <TweetForm />
-          <Feed />
+        <div className="relative">
+          <HomeHeader />
+          <div id="feed" className="pt-[117px] w-full max-h-[100vh] absolute overflow-y-auto">
+            <TweetForm />
+            <Feed />
+          </div>
         </div>
       </div>
 
