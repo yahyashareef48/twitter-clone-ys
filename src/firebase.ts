@@ -33,7 +33,13 @@ export const colRef = collection(db, "tweets");
 export const auth = getAuth(app);
 export const googleProvider = new GoogleAuthProvider();
 
-export async function addTweet(photoURL: string, tweet: string, uid: string, userName: string) {
+export async function addTweet(
+  photoURL: string,
+  tweet: string,
+  uid: string,
+  userName: string,
+  images: string[]
+) {
   await addDoc(colRef, {
     createdAt: Timestamp.fromDate(new Date()),
     photoURL,
@@ -41,6 +47,7 @@ export async function addTweet(photoURL: string, tweet: string, uid: string, use
     uid,
     userName,
     likes: [],
+    images,
   });
 }
 

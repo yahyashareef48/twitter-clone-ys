@@ -27,6 +27,7 @@ export default function Feed() {
   const tweetList = sortedTweets.map((doc, index) => {
     // Assuming each document contains a "tweet" field with the tweet content
     const data = doc.data();
+
     const tweet = data.tweet
       .replace(/\n{3,}/g, "<br/><br/>")
       .replace(/\n{2}/g, "<br/><br/>")
@@ -43,7 +44,11 @@ export default function Feed() {
           <div className="flex-1">
             <div className="flex justify-between">
               <p className="font-bold text-base">{data.userName}</p>
-              <TweetMenu authorId={data.uid} docId={doc.id} />
+              <div className=" relative">
+                <div className=" absolute top-[-.2rem] right-0">
+                  <TweetMenu authorId={data.uid} docId={doc.id} />
+                </div>
+              </div>
             </div>
 
             <div
@@ -52,6 +57,17 @@ export default function Feed() {
                 __html: tweet,
               }}
             />
+            {data.images && (
+              <div className="my-3">
+                {data.images.map((url: string, index: number) => (
+                  <img
+                    key={index}
+                    src={url}
+                    className="rounded-2xl aspect-video object-cover w-full h-full"
+                  />
+                ))}
+              </div>
+            )}
           </div>
 
           <div className="mt-2">
