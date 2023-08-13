@@ -69,13 +69,19 @@ export default function TweetForm({ handleFunc }: TweetFormProps) {
             {mediaContent.length > 0 && (
               <div className="my-3">
                 {mediaContent.startsWith("<iframe") ? (
-                  <div className="aspect-video" dangerouslySetInnerHTML={{ __html: mediaContent }} />
-                ) : (
-                  <img
-                    src={mediaContent}
-                    className="rounded-2xl aspect-auto object-cover w-full h-full"
-                    alt="Embedded Image"
+                  <div
+                    className="aspect-video"
+                    dangerouslySetInnerHTML={{ __html: mediaContent }}
                   />
+                ) : (
+                  <div className="relative">
+                    <img
+                      src={mediaContent}
+                      className="rounded-2xl aspect-auto object-cover w-full h-full"
+                      alt="Embedded Image"
+                    />
+                    <i onClick={() => setMediaContent("")} className="fa-solid fa-x absolute top-3 right-3 bg-[#0000006c] hover:bg-[#ffffff6c] transition cursor-pointer p-2 rounded-full"></i>
+                  </div>
                 )}
               </div>
             )}
