@@ -49,7 +49,7 @@ export default function TweetForm({ handleFunc }: TweetFormProps) {
   return (
     <>
       {user && (
-        <div className="flex max-w-[600px] p-4 border-[1px] border-t-0 border-[#2f3336]">
+        <div className="flex max-w-[600px] px-4 pt-4 border-[1px] border-t-0 border-[#2f3336]">
           <img
             className="w-10 max-h-[40px] rounded-full mr-4"
             src={user?.photoURL ?? undefined}
@@ -98,7 +98,7 @@ export default function TweetForm({ handleFunc }: TweetFormProps) {
                       </button>
                       <input
                         type="text"
-                        placeholder="mediaContent URL"
+                        placeholder="Past Your Media Content"
                         value={mediaContent}
                         onChange={(e) => {
                           const userInput = e.target.value;
