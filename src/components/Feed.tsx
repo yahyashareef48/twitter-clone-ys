@@ -58,11 +58,19 @@ export default function Feed() {
               }}
             />
             {data.mediaContent && (
-              <div className="my-3">
+              <div>
+                {data.mediaContent.startsWith("<iframe") ? (
+                  <div
+                    className="aspect-video"
+                    dangerouslySetInnerHTML={{ __html: data.mediaContent }}
+                  />
+                ) : (
                   <img
                     src={data.mediaContent}
                     className="rounded-2xl aspect-auto object-cover w-full h-full"
+                    alt="Embedded Image"
                   />
+                )}
               </div>
             )}
           </div>

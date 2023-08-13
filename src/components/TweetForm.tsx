@@ -14,12 +14,17 @@ export default function TweetForm({ handleFunc }: TweetFormProps) {
   const [imgOverlay, setImgOvberlay] = useState(false);
   const [mediaContent, setMediaContent] = useState("");
 
-  const handleImg = () => {
+  const handleMediaContent = () => {
     if (user && user.photoURL && user.uid && user.displayName) {
       if (mediaContent.trim().length > 0) {
+        if (mediaContent.startsWith("<iframe")) {
+          setMediaContent(mediaContent);
+        } else if (mediaContent.startsWith("https://")) {
+          setMediaContent(DOMPurify.sanitize(mediaContent));
+        }
         setImgOvberlay(false);
       } else {
-        alert("Past mediaContent URL");
+        alert("Past Your Media Content");
       }
     } else {
       alert("Sign in first!");
@@ -62,11 +67,16 @@ export default function TweetForm({ handleFunc }: TweetFormProps) {
             />
 
             {mediaContent.length > 0 && (
-              <div className="grid gap-3 max-h">
-                <img
-                  src={mediaContent}
-                  className="rounded-2xl aspect-auto object-cover w-full h-full"
-                />
+              <div className="my-3">
+                {mediaContent.startsWith("<iframe") ? (
+                  <div className="aspect-video" dangerouslySetInnerHTML={{ __html: mediaContent }} />
+                ) : (
+                  <img
+                    src={mediaContent}
+                    className="rounded-2xl aspect-auto object-cover w-full h-full"
+                    alt="Embedded Image"
+                  />
+                )}
               </div>
             )}
 
@@ -77,7 +87,13 @@ export default function TweetForm({ handleFunc }: TweetFormProps) {
                 <div>
                   <Overlay show={imgOverlay}>
                     <div className="max-w-[600px] flex bg-black w-full h-max mt-12 rounded-3xl">
-                      <button className="m-4" onClick={() => setImgOvberlay(false)}>
+                      <button
+                        className="m-4"
+                        onClick={() => {
+                          setImgOvberlay(false);
+                          setMediaContent("");
+                        }}
+                      >
                         <i className="fa-solid fa-x"></i>
                       </button>
                       <input
@@ -85,12 +101,13 @@ export default function TweetForm({ handleFunc }: TweetFormProps) {
                         placeholder="mediaContent URL"
                         value={mediaContent}
                         onChange={(e) => {
-                          setMediaContent(DOMPurify.sanitize(e.target.value));
+                          const userInput = e.target.value;
+                          setMediaContent(userInput);
                         }}
                         className="m-4 w-full text-xl outline-none resize-none max-h-20 bg-black border-b-[1px] border-[#2f3336]"
                       />
                       <button
-                        onClick={handleImg}
+                        onClick={handleMediaContent}
                         className="bg-[#1d9bf0] px-4 py-1 m-1 rounded-3xl font-bold text-base"
                       >
                         Add
