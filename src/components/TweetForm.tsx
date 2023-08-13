@@ -10,27 +10,16 @@ interface TweetFormProps {
 
 export default function TweetForm({ handleFunc }: TweetFormProps) {
   const [tweet, setTweet] = useState("");
-  const [imgURL, setImgURL] = useState("");
   const [user] = useAuthState(auth);
   const [imgOverlay, setImgOvberlay] = useState(false);
-  const [images, setImages] = useState<string[]>([]);
+  const [mediaContent, setMediaContent] = useState("");
 
   const handleImg = () => {
     if (user && user.photoURL && user.uid && user.displayName) {
-      if (imgURL.trim().length > 0) {
-        console.log(images);
-        
-        if (images.length < 1) {
-          setImages((oldImages) => [...oldImages, imgURL]);
-          setImgURL("");
-          setImgOvberlay(false);
-        } else {
-          setImgURL("");
-          setImgOvberlay(false);
-          alert("Max 1 Image")
-        }
+      if (mediaContent.trim().length > 0) {
+        setImgOvberlay(false);
       } else {
-        alert("Past Image URL");
+        alert("Past mediaContent URL");
       }
     } else {
       alert("Sign in first!");
@@ -39,10 +28,10 @@ export default function TweetForm({ handleFunc }: TweetFormProps) {
 
   const handleSubmit = () => {
     if (user && user.photoURL && user.uid && user.displayName) {
-      if (tweet.trim().length > 0 || images.length > 0) {
-        addTweet(user.photoURL, tweet, user.uid, user.displayName, images);
+      if (tweet.trim().length > 0 || mediaContent.length > 0) {
+        addTweet(user.photoURL, tweet, user.uid, user.displayName, mediaContent);
         setTweet("");
-        setImages([])
+        setMediaContent("");
         handleFunc && handleFunc();
       } else {
         alert("Write something");
@@ -59,7 +48,7 @@ export default function TweetForm({ handleFunc }: TweetFormProps) {
           <img
             className="w-10 max-h-[40px] rounded-full mr-4"
             src={user?.photoURL ?? undefined}
-            alt="profile Image"
+            alt="profile mediaContent"
           />
           <div className="w-full">
             <textarea
@@ -72,15 +61,12 @@ export default function TweetForm({ handleFunc }: TweetFormProps) {
               placeholder="What is happening?!"
             />
 
-            {images.length > 0 && (
+            {mediaContent.length > 0 && (
               <div className="grid gap-3 max-h">
-                {images.length > 0 &&
-                  images.map((url) => (
-                    <img
-                      src={url}
-                      className="rounded-2xl aspect-video object-cover w-full h-full"
-                    />
-                  ))}
+                <img
+                  src={mediaContent}
+                  className="rounded-2xl aspect-auto object-cover w-full h-full"
+                />
               </div>
             )}
 
@@ -96,10 +82,10 @@ export default function TweetForm({ handleFunc }: TweetFormProps) {
                       </button>
                       <input
                         type="text"
-                        placeholder="Image URL"
-                        value={imgURL}
+                        placeholder="mediaContent URL"
+                        value={mediaContent}
                         onChange={(e) => {
-                          setImgURL(DOMPurify.sanitize(e.target.value));
+                          setMediaContent(DOMPurify.sanitize(e.target.value));
                         }}
                         className="m-4 w-full text-xl outline-none resize-none max-h-20 bg-black border-b-[1px] border-[#2f3336]"
                       />
@@ -113,10 +99,10 @@ export default function TweetForm({ handleFunc }: TweetFormProps) {
                   </Overlay>
                   <i
                     onClick={() => {
-                      images.length < 1 && setImgOvberlay(true);
+                      mediaContent.length < 1 && setImgOvberlay(true);
                     }}
                     className={`fa-regular fa-image p-2 rounded-full transition-all ${
-                      images.length < 1
+                      mediaContent.length < 1
                         ? "hover:bg-[#1d9cf038] text-[#1d9bf0] cursor-pointer"
                         : "text-[#1d9cf08b]"
                     }`}

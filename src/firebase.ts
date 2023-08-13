@@ -38,7 +38,7 @@ export async function addTweet(
   tweet: string,
   uid: string,
   userName: string,
-  images: string[]
+  mediaContent: string
 ) {
   await addDoc(colRef, {
     createdAt: Timestamp.fromDate(new Date()),
@@ -47,7 +47,7 @@ export async function addTweet(
     uid,
     userName,
     likes: [],
-    images,
+    mediaContent,
   });
 }
 

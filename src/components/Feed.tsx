@@ -57,15 +57,12 @@ export default function Feed() {
                 __html: tweet,
               }}
             />
-            {data.images && (
+            {data.mediaContent && (
               <div className="my-3">
-                {data.images.map((url: string, index: number) => (
                   <img
-                    key={index}
-                    src={url}
-                    className="rounded-2xl aspect-video object-cover w-full h-full"
+                    src={data.mediaContent}
+                    className="rounded-2xl aspect-auto object-cover w-full h-full"
                   />
-                ))}
               </div>
             )}
           </div>
