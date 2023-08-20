@@ -6,8 +6,11 @@ import { colRef } from "../firebase";
 import { useCollection } from "react-firebase-hooks/firestore";
 
 export default function Home() {
-
   const [tweets, loading, error] = useCollection(colRef);
+
+  // If tweets has data, you can proceed with rendering the sorted tweetList
+  const sortedTweets =
+    tweets && [...tweets.docs].sort((a, b) => b.data().createdAt - a.data().createdAt);
 
   return (
     <div className="flex">
@@ -16,7 +19,7 @@ export default function Home() {
           <HomeHeader />
           <div id="feed" className="pt-[117px] w-full max-h-[100vh] absolute overflow-y-auto">
             <TweetForm />
-            <Feed tweets={tweets} loading={loading} error={error} />
+            <Feed tweets={sortedTweets} loading={loading} error={error} />
           </div>
         </div>
       </div>

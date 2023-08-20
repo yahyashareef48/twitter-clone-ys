@@ -7,7 +7,7 @@ type FeedTypes = {
   error: any | undefined;
 };
 
-export default function Feed({tweets, loading, error}: FeedTypes) {
+export default function Feed({ tweets, loading, error }: FeedTypes) {
   // Handle loading state
   if (loading) {
     return <p>Loading...</p>;
@@ -23,10 +23,7 @@ export default function Feed({tweets, loading, error}: FeedTypes) {
     return <p>No tweets found.</p>;
   }
 
-  // If tweets has data, you can proceed with rendering the sorted tweetList
-  const sortedTweets = [...tweets.docs].sort((a, b) => b.data().createdAt - a.data().createdAt);
-
-  const tweetList = sortedTweets.map((doc, index) => {
+  const tweetList = tweets.map((doc: any, index: number) => {
     // Assuming each document contains a "tweet" field with the tweet content
     const data = doc.data();
 
