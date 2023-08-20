@@ -43,7 +43,9 @@ export default function Feed() {
         <div className="w-full">
           <div className="flex-1">
             <div className="flex justify-between">
-              <p className="font-bold text-base">{data.userName}</p>
+              <span className="font-bold text-base">
+                <a href={data.uid}>{data.userName}</a>
+              </span>
               <div className=" relative">
                 <div className=" absolute top-[-.2rem] right-0">
                   <TweetMenu authorId={data.uid} docId={doc.id} />

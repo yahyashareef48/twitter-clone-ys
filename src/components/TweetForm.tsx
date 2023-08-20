@@ -92,7 +92,7 @@ export default function TweetForm({ handleFunc }: TweetFormProps) {
               <div>
                 <div>
                   <Overlay show={imgOverlay}>
-                    <div className="max-w-[600px] flex bg-black w-full h-max mt-12 rounded-3xl">
+                    <div className="max-w-[600px] m-4 flex bg-black w-full h-max mt-12 rounded-3xl">
                       <button
                         className="m-4"
                         onClick={() => {

@@ -34,16 +34,18 @@ export default function Navbar() {
             <i className="fa-solid fa-magnifying-glass pl-1 pr-4"></i>{" "}
             <span className="xl:hidden">Explore</span>
           </Link>
-          <Link
-            className={`
+          {user && (
+            <Link
+              className={`
               ${location.pathname === "/profile" && "font-bold"}
               p-3 pr-6 xl:pr-0 w-max hover:bg-[#e7e9ea1a] transition rounded-full
             `}
-            to="profile"
-          >
-            <i className="fa-regular font-bold fa-user pl-1 pr-4"></i>{" "}
-            <span className="xl:hidden">Profile</span>
-          </Link>
+              to={user.uid}
+            >
+              <i className="fa-regular font-bold fa-user pl-1 pr-4"></i>{" "}
+              <span className="xl:hidden">Profile</span>
+            </Link>
+          )}
 
           <TweetFormOverlay user={user} />
         </div>
