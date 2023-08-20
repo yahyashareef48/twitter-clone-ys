@@ -1,11 +1,13 @@
-import { colRef } from "../firebase";
-import { useCollection } from "react-firebase-hooks/firestore";
 import LikeButton from "./LikeButton";
 import TweetMenu from "./TweetMenu";
 
-export default function Feed() {
-  const [tweets, loading, error] = useCollection(colRef);
+type FeedTypes = {
+  tweets: any | undefined;
+  loading: boolean;
+  error: any | undefined;
+};
 
+export default function Feed({tweets, loading, error}: FeedTypes) {
   // Handle loading state
   if (loading) {
     return <p>Loading...</p>;
