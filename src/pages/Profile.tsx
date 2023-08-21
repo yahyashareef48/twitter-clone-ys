@@ -7,14 +7,14 @@ import { auth } from "../firebase";
 
 export default function Profile() {
   const [user] = useAuthState(auth);
-  const { email } = useParams();
+  const { uid } = useParams();
   const [tweets, loading, error] = useCollection(colRef);
 
   if (!tweets || tweets.empty) {
     return <p>No tweets found.</p>;
   }
 
-  const filterdTweets = [...tweets.docs].filter((doc) => doc.data().email === email);
+  const filterdTweets = [...tweets.docs].filter((doc) => doc.data().uid === uid);
 
   return (
     <div className="max-w-[600px] w-full">

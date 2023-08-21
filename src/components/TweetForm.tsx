@@ -12,10 +12,10 @@ export default function TweetForm({ handleFunc }: TweetFormProps) {
   const [tweet, setTweet] = useState("");
   const [user] = useAuthState(auth);
   const [imgOverlay, setImgOvberlay] = useState(false);
-  const [mediaContent, setMediaContent] = useState("");  
+  const [mediaContent, setMediaContent] = useState("");
 
   const handleMediaContent = () => {
-    if (user && user.photoURL && user.email && user.displayName) {
+    if (user && user.photoURL && user.uid && user.displayName) {
       if (mediaContent.trim().length > 0) {
         if (mediaContent.startsWith("<iframe")) {
           setMediaContent(mediaContent);

@@ -26,7 +26,7 @@ export default function Feed({ tweets, loading, error }: FeedTypes) {
   const tweetList = tweets.map((doc: any, index: number) => {
     // Assuming each document contains a "tweet" field with the tweet content
     const data = doc.data();
-    console.log(data.email);
+    console.log(data.uid);
     
 
     const tweet = data.tweet
@@ -45,11 +45,11 @@ export default function Feed({ tweets, loading, error }: FeedTypes) {
           <div className="flex-1">
             <div className="flex justify-between">
               <span className="font-bold text-base">
-                <a href={data.email}>{data.userName}</a>
+                <a href={data.uid}>{data.userName}</a>
               </span>
               <div className=" relative">
                 <div className=" absolute top-[-.2rem] right-0">
-                  <TweetMenu authorId={data.email} docId={doc.id} />
+                  <TweetMenu authorId={data.uid} docId={doc.id} />
                 </div>
               </div>
             </div>
