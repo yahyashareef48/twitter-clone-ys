@@ -36,7 +36,7 @@ export const googleProvider = new GoogleAuthProvider();
 export async function addTweet(
   photoURL: string,
   tweet: string,
-  uid: string,
+  email: string,
   userName: string,
   mediaContent: string
 ) {
@@ -44,7 +44,7 @@ export async function addTweet(
     createdAt: Timestamp.fromDate(new Date()),
     photoURL,
     tweet,
-    uid,
+    email,
     userName,
     likes: [],
     mediaContent,

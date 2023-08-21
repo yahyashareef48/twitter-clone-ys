@@ -9,14 +9,14 @@ export default function LikeButton({ docId, data }: { docId: string; data: any }
   const navigate = useNavigate();
 
   const likesLength = data && data.likes ? data.likes.length : 0;
-  const userLiked = data.likes && user ? data.likes.includes(user.uid) : false;
+  const userLiked = data.likes && user ? data.likes.includes(user.email) : false;
 
   const [error, setError] = useState<string | null>(null);
 
   const handleLikeClick = async () => {
-    if (user) {
+    if (user && user.email) {
       try {
-        await handleLike(docId, user.uid);
+        await handleLike(docId, user.email);
       } catch (error) {
         setError("An error occurred while processing the like. Please try again later.");
       }
