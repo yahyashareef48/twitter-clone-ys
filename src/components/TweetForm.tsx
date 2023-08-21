@@ -32,9 +32,9 @@ export default function TweetForm({ handleFunc }: TweetFormProps) {
   };
 
   const handleSubmit = () => {
-    if (user && user.photoURL && user.email && user.displayName) {
+    if (user && user.photoURL && user.uid && user.displayName) {
       if (tweet.trim().length > 0 || mediaContent.length > 0) {
-        addTweet(user.photoURL, tweet, user.email, user.displayName, mediaContent);
+        addTweet(user.photoURL, tweet, user.uid, user.displayName, mediaContent);
         setTweet("");
         setMediaContent("");
         handleFunc && handleFunc();
