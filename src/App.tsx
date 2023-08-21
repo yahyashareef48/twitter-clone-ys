@@ -28,4 +28,3 @@ function App() {
 export default App;
 
 //TODO: Add error page
-//TODO: Add twitter card like card
