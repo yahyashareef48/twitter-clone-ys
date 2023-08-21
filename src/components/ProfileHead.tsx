@@ -45,6 +45,9 @@ export default function ProfileHead({ uid, handleFunc }: ProfileHeadTypes) {
     return <p>Error: {error.message}</p>;
   }
 
+  console.log(profile.followers.includes(user?.uid));
+  
+
   return (
     <div className="border-x-[1px] border-[#2f3336]">
       <div className="flex justify-between">
@@ -59,7 +62,7 @@ export default function ProfileHead({ uid, handleFunc }: ProfileHeadTypes) {
               onClick={handleFollowBtn}
               className="bg-white px-5 py-2 rounded-full text-black font-semibold text-sm"
             >
-              Follow
+              {profile.followers.includes(user?.uid) ? "Following" : "Follow"}
             </button>
           </div>
         )}
