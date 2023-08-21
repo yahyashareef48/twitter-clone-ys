@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export default function HomeHeader() {
+export default function HomeHeader({handleFunc}: {handleFunc: any}) {
   const [activeBtnIndex, setActiveBtnIndex] = useState(0);
 
   return (
@@ -12,6 +12,7 @@ export default function HomeHeader() {
         <button
           onClick={() => {
             setActiveBtnIndex(0);
+            handleFunc(false)
           }}
           className={`
                   ${activeBtnIndex !== 0 && "text-[#71767b]"}
@@ -25,6 +26,7 @@ export default function HomeHeader() {
         <button
           onClick={() => {
             setActiveBtnIndex(1);
+            handleFunc(true)
           }}
           className={`
                   ${activeBtnIndex !== 1 && "text-[#71767b]"}

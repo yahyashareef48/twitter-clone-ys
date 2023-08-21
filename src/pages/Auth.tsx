@@ -8,7 +8,7 @@ import { useCollection } from "react-firebase-hooks/firestore";
 
 export default function Auth() {
   const [user] = useAuthState(auth);
-  const [users, userLoading, userError] = useCollection(usersColRef);
+  const [users, userLoading] = useCollection(usersColRef);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -26,7 +26,7 @@ export default function Auth() {
         const usersArray = users.docs.map((doc) => doc.data());
         const userExists = usersArray.some((u) => u.uid === user.uid);
 
-        if (!userExists) {
+        if (!userExists && user.displayName && user.photoURL) {
           await addUser(user.uid, user.displayName, user.photoURL);
           // Other actions after adding user
         }
