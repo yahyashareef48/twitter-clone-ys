@@ -28,7 +28,7 @@ export default function TweetMenu({ authorId, docId }: { authorId: string; docId
         </div>
       )}
 
-      {authorId === user?.uid && (
+      {authorId === user?.email && (
         <button onClick={() => setHide((old) => !old)}>
           <i className="fa-solid fa-ellipsis text-[#71767b] hover:text-[#1d9bf0] hover:bg-[#1d9bf01a] p-2 rounded-full"></i>
         </button>

@@ -26,6 +26,8 @@ export default function Feed({ tweets, loading, error }: FeedTypes) {
   const tweetList = tweets.map((doc: any, index: number) => {
     // Assuming each document contains a "tweet" field with the tweet content
     const data = doc.data();
+    console.log(data.uid);
+    
 
     const tweet = data.tweet
       .replace(/\n{3,}/g, "<br/><br/>")
