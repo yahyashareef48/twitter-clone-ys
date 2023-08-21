@@ -24,13 +24,14 @@ export default function ProfileHead({ uid, handleFunc }: ProfileHeadTypes) {
       if (matchedProfile && userProfile) {
         setDocId({ userDocId: userProfile.id, profileDocId: matchedProfile.id });
         setProfile(matchedProfile.data()); // Assuming profile data is stored within .data()
-        handleFunc(matchedProfile.data().userName)
+        handleFunc(matchedProfile.data().userName);
       } else {
         setProfile(null); // Set to null if no matching profile is found
       }
     }
   }, [users, loading, uid]);
 
+  // Handles the follow button click event.
   const handleFollowBtn = () => {
     user && handleFollow(docId.userDocId, docId.profileDocId, user.uid, profile.uid);
   };
@@ -43,8 +44,6 @@ export default function ProfileHead({ uid, handleFunc }: ProfileHeadTypes) {
   if (error) {
     return <p>Error: {error.message}</p>;
   }
-
-  console.log(profile.following);
 
   return (
     <div className="border-x-[1px] border-[#2f3336]">

@@ -2,25 +2,24 @@ import { useParams, Link } from "react-router-dom";
 import { tweetColRef } from "../firebase";
 import { useCollection } from "react-firebase-hooks/firestore";
 import Feed from "../components/Feed";
-import { useAuthState } from "react-firebase-hooks/auth";
-import { auth } from "../firebase";
 import ProfileHead from "../components/ProfileHead";
 import { useState } from "react";
 
 export default function Profile() {
-  const [user] = useAuthState(auth);
   const { uid } = useParams();
   const [tweets, loading, error] = useCollection(tweetColRef);
   const [userName, setUserName] = useState("");
 
+  // Updates the user's name in the state.
   const handleUserName = (name: string) => {
     setUserName(name);
-  }
+  };
 
   if (!tweets || tweets.empty) {
     return <p>No tweets found.</p>;
   }
 
+  // Filter and sort tweets by the user's UID and creation time
   const filterdTweets = [...tweets.docs]
     .filter((doc) => doc.data().uid === uid)
     .sort((a, b) => b.data().createdAt - a.data().createdAt);
