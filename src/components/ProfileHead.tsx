@@ -45,9 +45,8 @@ export default function ProfileHead({ uid, handleFunc }: ProfileHeadTypes) {
     return <p>Error: {error.message}</p>;
   }
 
-  console.log(profile.followers.includes(user?.uid));
+  const followingOrNot = profile.followers.includes(user?.uid)
   
-
   return (
     <div className="border-x-[1px] border-[#2f3336]">
       <div className="flex justify-between">
@@ -60,9 +59,9 @@ export default function ProfileHead({ uid, handleFunc }: ProfileHeadTypes) {
           <div className="flex items-center mr-4">
             <button
               onClick={handleFollowBtn}
-              className="bg-white px-5 py-2 rounded-full text-black font-semibold text-sm"
+              className={`${followingOrNot ? "text-white" : "bg-white"} px-5 border-[1px] py-2 rounded-full text-black font-semibold text-sm`}
             >
-              {profile.followers.includes(user?.uid) ? "Following" : "Follow"}
+              {followingOrNot ? "Following" : "Follow"}
             </button>
           </div>
         )}
