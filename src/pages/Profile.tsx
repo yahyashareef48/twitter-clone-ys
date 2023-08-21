@@ -5,11 +5,17 @@ import Feed from "../components/Feed";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../firebase";
 import ProfileHead from "../components/ProfileHead";
+import { useState } from "react";
 
 export default function Profile() {
   const [user] = useAuthState(auth);
   const { uid } = useParams();
   const [tweets, loading, error] = useCollection(tweetColRef);
+  const [userName, setUserName] = useState("");
+
+  const handleUserName = (name: string) => {
+    setUserName(name);
+  }
 
   if (!tweets || tweets.empty) {
     return <p>No tweets found.</p>;
@@ -27,14 +33,14 @@ export default function Profile() {
             <i className="fa-solid fa-arrow-left"></i>
           </Link>
           <div>
-            <p className="font-bold text-xl">{user?.displayName}</p>
+            <p className="font-bold text-xl">{userName}</p>
             <span className=" text-sm text-[#71767b]">
               {filterdTweets.length} {filterdTweets.length === 1 ? "Post" : "Posts"}
             </span>
           </div>
         </div>
         <div id="feed" className="pt-[53px] w-full max-h-[99.9vh] absolute overflow-y-auto">
-          <ProfileHead uid={uid} />
+          <ProfileHead uid={uid} handleFunc={handleUserName} />
 
           <Feed tweets={filterdTweets} loading={loading} error={error} />
         </div>

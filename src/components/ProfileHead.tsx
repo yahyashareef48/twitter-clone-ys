@@ -5,9 +5,10 @@ import { useAuthState } from "react-firebase-hooks/auth";
 
 type ProfileHeadTypes = {
   uid: any;
+  handleFunc?: any;
 };
 
-export default function ProfileHead({ uid }: ProfileHeadTypes) {
+export default function ProfileHead({ uid, handleFunc }: ProfileHeadTypes) {
   const [users, loading, error] = useCollection(usersColRef);
   const [profile, setProfile] = useState<any>(null);
   const [docId, setDocId] = useState({ userDocId: "", profileDocId: "" });
@@ -23,6 +24,7 @@ export default function ProfileHead({ uid }: ProfileHeadTypes) {
       if (matchedProfile && userProfile) {
         setDocId({ userDocId: userProfile.id, profileDocId: matchedProfile.id });
         setProfile(matchedProfile.data()); // Assuming profile data is stored within .data()
+        handleFunc(matchedProfile.data().userName)
       } else {
         setProfile(null); // Set to null if no matching profile is found
       }
@@ -52,7 +54,7 @@ export default function ProfileHead({ uid }: ProfileHeadTypes) {
           <p className="pl-4 pb-3 font-extrabold text-xl">{profile.userName}</p>
         </div>
 
-        {!user?.uid === uid && (
+        {user?.uid !== uid && (
           <div className="flex items-center mr-4">
             <button
               onClick={handleFollowBtn}
