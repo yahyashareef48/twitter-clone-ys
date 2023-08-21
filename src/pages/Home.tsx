@@ -2,11 +2,11 @@ import SearchBar from "../components/SearchBar";
 import HomeHeader from "../components/HomeHeader";
 import TweetForm from "../components/TweetForm";
 import Feed from "../components/Feed";
-import { colRef } from "../firebase";
+import { tweetColRef } from "../firebase";
 import { useCollection } from "react-firebase-hooks/firestore";
 
 export default function Home() {
-  const [tweets, loading, error] = useCollection(colRef);
+  const [tweets, loading, error] = useCollection(tweetColRef);
 
   // If tweets has data, you can proceed with rendering the sorted tweetList
   const sortedTweets =

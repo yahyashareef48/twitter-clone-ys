@@ -1,12 +1,14 @@
 import { useAuthState } from "react-firebase-hooks/auth";
-import { auth, googleProvider } from "../firebase";
+import { auth, googleProvider, addUser, usersColRef } from "../firebase";
 import { signInWithPopup, signOut } from "firebase/auth";
 import { Link, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import googleIcon from "../../public/7123025_logo_google_g_icon.svg";
+import { useCollection } from "react-firebase-hooks/firestore";
 
 export default function Auth() {
   const [user] = useAuthState(auth);
+  const [users, userLoading, userError] = useCollection(usersColRef);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -16,6 +18,20 @@ export default function Auth() {
   const signInWithGoogle = async () => {
     try {
       await signInWithPopup(auth, googleProvider);
+      
+    const user = auth.currentUser;
+    if (user) {
+      // Ensure 'users' is defined and not loading
+      if (users && !userLoading) {
+        const usersArray = users.docs.map((doc) => doc.data());
+        const userExists = usersArray.some((u) => u.uid === user.uid);
+
+        if (!userExists) {
+          await addUser(user.uid, user.displayName, user.photoURL);
+          // Other actions after adding user
+        }
+      }
+    }
     } catch (err) {
       console.error(err);
     }
