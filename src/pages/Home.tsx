@@ -50,7 +50,7 @@ export default function Home() {
 
   return (
     <div className="flex">
-      <div className="max-w-[600px] w-full">
+      <div className="max-w-[639px] w-full">
         <div className="relative">
           {/* Render header for filtering */}
           <HomeHeader handleFunc={handlefilter} />

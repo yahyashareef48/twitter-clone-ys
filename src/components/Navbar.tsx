@@ -9,7 +9,7 @@ export default function Navbar() {
   const [user] = useAuthState(auth);
 
   return (
-    <header className="max-w-[250px] xl:max-w-[60px] w-full">
+    <header className="max-w-[250px] xl:max-w-[60px] w-full sm:hidden">
       <nav className="flex flex-col justify-between min-h-screen text-xl text-[#e7e9ea]">
         <div className="grid">
           <div className="w-12 aspect-square p-3">

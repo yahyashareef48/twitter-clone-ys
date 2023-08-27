@@ -34,7 +34,7 @@ export default function Feed({ tweets, loading, error }: FeedTypes) {
       .replace(/(.{20})/g, "$1&#8203;");
 
     return (
-      <div key={index} className="flex max-w-[600px] p-4 border-[1px] border-[#2f3336]">
+      <div key={index} className="flex max-w-[639px] p-4 border-[1px] border-[#2f3336]">
         <div className="min-w-[56px]">
           <img className="w-10 max-h-[40px] rounded-full mr-4" src={data.photoURL} alt="profile image" />
         </div>
