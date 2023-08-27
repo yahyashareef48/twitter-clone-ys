@@ -21,7 +21,7 @@ export default function Explore() {
     <>
       <div className="max-w-[600px] w-full">
         <div className="relative">
-          <div className="border-[1px] flex px-4 z-10 absolute max-w-[inherit] w-full border-[#2f3336] bg-black bg-opacity-80 bg-clip-padding backdrop-blur">
+          <div className="border-[1px] flex justify-between px-4 z-10 absolute max-w-[inherit] w-full border-[#2f3336] bg-black bg-opacity-80 bg-clip-padding backdrop-blur">
             <Link to=".." className="w-10 flex items-center">
               <i className="fa-solid fa-arrow-left"></i>
             </Link>
