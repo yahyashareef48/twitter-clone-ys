@@ -50,7 +50,7 @@ export default function Navbar() {
           <TweetFormOverlay user={user} />
         </div>
 
-        <div className="mb-10">
+        <div className="pb-10">
           <AuthButton />
         </div>
       </nav>

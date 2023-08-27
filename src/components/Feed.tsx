@@ -36,7 +36,7 @@ export default function Feed({ tweets, loading, error }: FeedTypes) {
     return (
       <div key={index} className="flex max-w-[600px] p-4 border-[1px] border-[#2f3336]">
         <div className="min-w-[56px]">
-          <img className="w-10 max-h-[40px] rounded-full mr-4" src={data.photoURL} alt="" />
+          <img className="w-10 max-h-[40px] rounded-full mr-4" src={data.photoURL} alt="profile image" />
         </div>
 
         <div className="w-full">
@@ -69,7 +69,7 @@ export default function Feed({ tweets, loading, error }: FeedTypes) {
                   <img
                     src={data.mediaContent}
                     className="rounded-2xl aspect-auto object-cover w-full h-full"
-                    alt="Embedded Image"
+                    alt="Image"
                   />
                 )}
               </div>
