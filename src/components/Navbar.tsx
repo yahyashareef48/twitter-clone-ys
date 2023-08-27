@@ -11,7 +11,7 @@ export default function Navbar() {
   return (
     <header className="max-w-[250px] xl:max-w-[60px] w-full">
       <nav className="flex flex-col justify-between min-h-screen text-xl text-[#e7e9ea]">
-        <div className="grid sm:flex sm:fixed">
+        <div className="grid">
           <div className="w-12 aspect-square p-3">
             <i className="fa-brands fa-twitter text-2xl pl-1"></i>
           </div>
