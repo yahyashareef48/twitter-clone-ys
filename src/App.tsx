@@ -6,6 +6,9 @@ import Profile from "./pages/Profile";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "./firebase";
 import Explore from "./pages/Explore";
+import MobileNav from "./components/MobileNav";
+import TweetFormOverlay from "./components/TweetFormOverlay";
+
 
 function App() {
   const [user] = useAuthState(auth);
@@ -21,6 +24,13 @@ function App() {
           <Route path="/explore" element={<Explore />} />
           <Route path="/login" element={<Auth />} />
         </Routes>
+        {/* Render mobile navbar when screen is lower then 639px */}
+        <div className="hidden sm:block absolute bottom-0 left-0 bg-black w-full max-h-14">
+          <div className=" absolute right-5 bottom-16">
+            <TweetFormOverlay user={user} />
+          </div>
+          <MobileNav />
+        </div>
       </div>
     </div>
   );

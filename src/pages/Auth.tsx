@@ -63,7 +63,7 @@ export function AuthButton() {
               onClick={() => {
                 signOut(auth);
               }}
-              className="absolute p-4 min-w-[95px] cursor-pointer text-base font-bold bg-black bottom-12 left-8 border-[1px] border-[#2f3336] rounded-2xl"
+              className="absolute p-4 min-w-[95px] cursor-pointer text-base font-bold bg-black bottom-12 left-8 sm:left-[-32px] border-[1px] border-[#2f3336] rounded-2xl"
             >
               <span>Log out</span>
             </div>
