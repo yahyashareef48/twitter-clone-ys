@@ -20,6 +20,9 @@ Contact
 You can reach out to Yahya Shareef for questions or inquiries about this project:
 
 Site Link: https://twitter-clone-ys.web.app/home
+
 Email:yahyasgareef48@gmail.com
-Twitter: [@your_twitter_handle](https://twitter.com/shareef_yahya1)https://twitter.com/shareef_yahya1
+
+Twitter: https://twitter.com/shareef_yahya1
+
 Happy coding!
