@@ -2,7 +2,7 @@
 Twitter Clone by Yahya Shareef
 This project is a Twitter clone developed by Yahya Shareef. It's built using the following technologies:
 
-React
+React 
 JavaScript
 Tailwind CSS
 TypeScript
