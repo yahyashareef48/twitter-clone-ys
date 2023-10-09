@@ -9,7 +9,7 @@ TypeScript,
 Firebase for backend,
 
 Description:
- This Twitter clone is a web application that aims to replicate the core features of Twitter. It allows users to post tweets, follow other users, and engage in conversations by commenting on tweets. The project is a great example of modern web development, using React and Next.js for the frontend, along with Firebase for the backend.
+ This Twitter clone is a web application that aims to replicate the core features of Twitter. It allows users to post tweets, follow other users. The project is a great example of modern web development, using React and Next.js for the frontend, along with Firebase for the backend.
 
 Features: 
 User registration and authentication,
