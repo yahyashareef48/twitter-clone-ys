@@ -1,5 +1,6 @@
 import LikeButton from "./LikeButton";
 import TweetMenu from "./TweetMenu";
+import { Link } from "react-router-dom";
 
 type FeedTypes = {
   tweets: any | undefined;
@@ -43,7 +44,7 @@ export default function Feed({ tweets, loading, error }: FeedTypes) {
           <div className="flex-1">
             <div className="flex justify-between">
               <span className="font-bold text-base">
-                <a href={data.uid}>{data.userName}</a>
+                <Link to={`/${data.uid}`}>{data.userName}</Link>
               </span>
               <div className=" relative">
                 <div className=" absolute top-[-.2rem] right-0">
